@@ -85,8 +85,7 @@ class SACD(RLAlgorithm, Serializable):
             vfc,
             pool,
             plotter=None,
-
-            lr=3e-3,
+            lr=1e-3,
             scale_reward=1,
             scale_rewardc=1,
             alpha=1,
@@ -293,7 +292,7 @@ class SACD(RLAlgorithm, Serializable):
         )  # N
 
         ycs = tf.stop_gradient(
-            self.scale_rewardc * self._costs_ph +
+            -self.scale_rewardc * self._costs_ph +
             (1 - self._terminals_ph) * self._discount * vfc_next_target_t
         )  # N
 
@@ -494,12 +493,12 @@ class SACD(RLAlgorithm, Serializable):
         ##############################
         #if iteration >= 1000:
         vfc = self._sess.run(self._vfc_t, feed_dict={self._observations_ph: batch['observations']})
-        if np.mean(vfc) > self._constraint_limit:
+        if -1 * np.mean(vfc) > self._constraint_limit:
             decay = 1.5e-4 #1.25e-4 #bus4 bus34 1e-4; bus123 4e-4
         else:
             decay = 1e-3
-        self._constraint_limit = self._constraint_limit * (1 - decay) + decay * np.mean(vfc)
-        constraint_coeff_delta = np.mean(vfc) - self._constraint_limit
+        self._constraint_limit = self._constraint_limit * (1 - decay) - decay * np.mean(vfc)
+        constraint_coeff_delta = -np.mean(vfc) - self._constraint_limit
         constraint_coeff_delta = constraint_coeff_delta*(2/(1+np.exp(-np.abs(constraint_coeff_delta)))-1)
         constraint_coeff_delta = np.clip(constraint_coeff_delta, -50, 50)
         self._constraint_coeff += self._constraint_lr * constraint_coeff_delta
