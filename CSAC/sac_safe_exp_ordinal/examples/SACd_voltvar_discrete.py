@@ -11,7 +11,7 @@ import lasagne.nonlinearities as NL
 from rllab.policies.categorical_mlp_policy import CategoricalMLPPolicy
 
 # Environment
-from envs.distflow.voltvar_env34 import VoltVarEnv
+from envs.distflow.voltvar_env import VoltVarEnv
 
 # Policy optimization
 from sac.algos.sacd import SACD
@@ -35,7 +35,7 @@ def run_experiment(*_):
     pool = SimpleReplayBuffer(max_replay_buffer_size=1e6, env_spec=env.spec)
 
     sampler = SimpleSampler(
-        max_path_length=168, min_pool_size=100, batch_size=512)
+        max_path_length=168, min_pool_size=100, batch_size=256)
 
     base_kwargs = dict(
         sampler=sampler,
@@ -112,8 +112,11 @@ def run_experiment(*_):
         # plotter=plotter,
         lr=1e-3,
         scale_reward=50,#2.5,  ## 50 bus 4; 10 bus34
-        scale_rewardc=5,  # 2.5,  ## 50 bus 4; 10 bus34
+        scale_rewardc=50,  # 2.5,  ## 50 bus 4; 10 bus34
         alpha=1,
+        constraint_lr= 1e-5,  # 1e-5, #1e-6,#bus34 5e-6;
+        # constraint_coeff=1,  # 0,
+        # constraint_coeff_targ=1,
         discount=0.99,
         tau=5e-4, #bus34 5e-4;bus123 2.5e-4,;
         target_update_interval=1,
@@ -126,7 +129,7 @@ def run_experiment(*_):
 
 if __name__ == "__main__":
 
-    exp_prefix = 'SACD-VoltVar34-exp7'
+    exp_prefix = 'SACF-VoltVar4-max-exp1'
     exp_name = timestamp()
     log_dir = os.path.join(
         DEFAULT_LOG_DIR,
