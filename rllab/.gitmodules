@@ -1,0 +1,3 @@
+[submodule "sandbox/cpo"]
+	path = sandbox/cpo
+	url = https://github.com/jachiam/cpo

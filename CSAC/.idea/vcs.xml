@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="$PROJECT_DIR$/rllab" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/sac" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/sac_safe" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/sac_safe_exp" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/sac_safe_exp_lambda" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/sac_safe_exp_lambda_reg" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/sac_safe_exp_lambda_reg2" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/sac_safe_exp_ordinal" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/sac_safe_exp_ordinal (copy)" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/sac_safe_exp_ordinal_bus123" vcs="Git" />
+  </component>
+</project>

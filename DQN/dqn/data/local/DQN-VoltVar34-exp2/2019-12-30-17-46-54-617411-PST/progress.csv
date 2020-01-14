@@ -1,0 +1,2 @@
+episode-length-max,time-eval,episodes,total-samples,episode-length-avg,return-min,time-sample,return-max,mean-sq-bellman-error,qf-avg,time-train,epsilon,time-total,last-path-return,return-std,episode-length-min,return-average,epoch,pool-size,violate-average,max-path-return,episode-length-std
+168,0,65,11000,168.0,-308.636378783,3.7500737118534744,-124.768671696,0.778975,-20.5072,6.85310714750085,0.9500000000000055,24.206549632246606,-784.373551387,64.8684228234,168,-186.292314382,0,11000,57.6,-755.874333929,0.0
